@@ -1,0 +1,105 @@
+<div class="d-flex" style="min-height: 100vh">
+  <app-left-side-panel></app-left-side-panel>
+  <app-skill-search></app-skill-search>
+
+  <div class="flex-grow-1 p-4">
+    <div class="container py-4">
+      <h3 class="mb-3">Browse Skills to Exchange</h3>
+      <p class="text-muted mb-4">
+        Discover new skills, connect with others, and request sessions to start
+        learning or sharing today.
+      </p>
+
+      <!-- Search and Filters -->
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <input
+          type="text"
+          class="form-control flex-grow-1"
+          placeholder="Search skills, categories, or users..."
+        />
+        <select class="form-select w-auto">
+          <option>All Categories</option>
+          <!-- Add real categories here -->
+        </select>
+        <select class="form-select w-auto">
+          <option>All Levels</option>
+          <!-- Add levels here -->
+        </select>
+        <select class="form-select w-auto">
+          <option>Sort: Newest</option>
+          <option>Sort: Oldest</option>
+          <option>Sort: A-Z</option>
+        </select>
+        <a class="btn btn-dark ms-auto" [routerLink]="['/add-skill']">
+          <i class="bi bi-plus-lg me-1"></i> Post a New Skill
+        </a>
+      </div>
+
+      <!-- Skill Cards -->
+      <div class="row g-4" *ngIf="skillsToLearn.length > 0; else noSkills">
+        <div class="col-md-6 col-lg-4" *ngFor="let skill of skillsToLearn">
+          <div
+            class="border rounded p-3 h-100 d-flex flex-column justify-content-between"
+          >
+            <div class="mb-3">
+              <!-- Posted by -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img
+                  [src]="skill.imageUrl || 'assets/avatar.svg'"
+                  width="32"
+                  height="32"
+                  class="rounded-circle"
+                  alt="Avatar"
+                />
+                <strong>{{ skill.postedBy }}</strong>
+              </div>
+
+              <!-- Title, Description -->
+              <h5 class="mb-1">{{ skill.title }}</h5>
+              <p class="text-muted small mb-2">{{ skill.description }}</p>
+
+              <!-- Tags -->
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span
+                  *ngFor="let tag of skill.tags"
+                  class="badge bg-light text-dark border"
+                >
+                  {{ tag }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="d-flex justify-content-between gap-2">
+              <button class="btn btn-dark btn-sm w-100">
+                <i class="bi bi-send me-1"></i> Request Session
+              </button>
+              <button class="btn btn-light btn-sm border w-100">
+                <i class="bi bi-eye me-1"></i> View Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Skills Message -->
+      <ng-template #noSkills>
+        <div class="text-muted text-center mt-4">
+          No skills available to learn. Try refining your search or explore new
+          categories.
+        </div>
+      </ng-template>
+
+      <!-- Pagination (static for now) -->
+      <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">...</a></li>
+          <li class="page-item"><a class="page-link" href="#">10</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

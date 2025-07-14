@@ -1,0 +1,11 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.skills-container h5 {
+    font-weight: 600;
+}
+
+.skills-container .badge {
+    font-size: 0.75rem;
+}

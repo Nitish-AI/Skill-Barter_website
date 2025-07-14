@@ -1,0 +1,126 @@
+<!-- Render only when userData is available -->
+<div
+  *ngIf="userData"
+  class="profile-header p-4 rounded border bg-white d-flex justify-content-between align-items-center flex-wrap"
+>
+  <!-- Left section: Profile image and basic info -->
+  <div class="d-flex align-items-center gap-3 flex-wrap">
+    <img
+      [src]="userData.imageUrl || 'assets/avatar.svg'"
+      alt="Profile image"
+      class="rounded-circle"
+      width="80"
+      height="80"
+    />
+
+    <div>
+      <h4 class="mb-1">{{ userData.firstName }} {{ userData.lastName }}</h4>
+      <p class="mb-1">{{ userData.bio }}</p>
+      <div class="text-muted small d-flex gap-3">
+        <div><i class="bi bi-geo-alt"></i> {{ userData.address }}</div>
+        <div>
+          <i class="bi bi-calendar"></i> Joined {{userData.dateOfJoin | date:
+          'MMM yyyy' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right section: Ratings and edit button -->
+  <div class="text-end mt-3 mt-md-0">
+    <div class="fw-semibold fs-5">4.8</div>
+    <div>
+      <i class="bi bi-star-fill text-dark"></i>
+      <i class="bi bi-star-fill text-dark"></i>
+      <i class="bi bi-star-fill text-dark"></i>
+      <i class="bi bi-star-fill text-dark"></i>
+      <i class="bi bi-star-half text-dark"></i>
+    </div>
+    <div class="small text-muted">30 reviews</div>
+    <button
+      class="btn btn-outline-secondary btn-sm mt-2"
+      (click)="isEditing = true"
+    >
+      <i class="bi bi-pencil-square me-1"></i> Edit Profile
+    </button>
+
+    <!-- Edit Form -->
+    <div *ngIf="isEditing" class="mt-4">
+      <form (ngSubmit)="submitUpdate()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label>First Name</label>
+            <input
+              class="form-control"
+              [(ngModel)]="updateData.firstName"
+              name="firstName"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Last Name</label>
+            <input
+              class="form-control"
+              [(ngModel)]="updateData.lastName"
+              name="lastName"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Username</label>
+            <input
+              class="form-control"
+              [(ngModel)]="updateData.userName"
+              name="userName"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Bio</label>
+            <input
+              class="form-control"
+              [(ngModel)]="updateData.bio"
+              name="bio"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Address</label>
+            <input
+              class="form-control"
+              [(ngModel)]="updateData.address"
+              name="address"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Image URL</label>
+            <input
+              class="form-control"
+              [(ngModel)]="updateData.imageUrl"
+              name="imageUrl"
+            />
+          </div>
+          <div class="col-md-6">
+            <label>Current Password</label>
+            <input
+              type="password"
+              class="form-control"
+              [(ngModel)]="updateData.currentPassword"
+              name="currentPassword"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-dark mt-3">Save Changes</button>
+        <button
+          type="button"
+          class="btn btn-secondary mt-3 ms-2"
+          (click)="isEditing = false"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Optional fallback message while loading -->
+<ng-template #loading>
+  <div class="text-muted small">Loading profile...</div>
+</ng-template>

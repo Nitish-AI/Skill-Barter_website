@@ -1,0 +1,169 @@
+<div
+  class="container mt-4 p-4 bg-white rounded shadow-sm"
+  style="max-width: 700px"
+>
+  <h4 class="mb-4">Post a New Skill</h4>
+
+  <form (ngSubmit)="submitSkill()">
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label">Skill Title</label>
+      <input
+        class="form-control"
+        placeholder="E.g. Web Development, Guitar Basics"
+        [(ngModel)]="skill.title"
+        name="title"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        rows="4"
+        placeholder="Describe your skill..."
+        [(ngModel)]="skill.description"
+        name="description"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select
+        class="form-select"
+        [(ngModel)]="skill.category"
+        name="category"
+        required
+      >
+        <option value="">Select a category</option>
+        <option value="BUSINESS">Business</option>
+        <option value="TECHNOLOGY">Technology</option>
+        <option value="LANGUAGE">Language</option>
+        <option value="PERSONAL_GROWTH">Personal Growth</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-3">
+      <label class="form-label">Tags</label>
+      <input
+        class="form-control mb-2"
+        placeholder="E.g. HTML, CSS, Beginner-friendly"
+        [(ngModel)]="tagInput"
+        name="tagInput"
+        (keyup.enter)="addTag()"
+      />
+      <div class="d-flex flex-wrap gap-2">
+        <span
+          *ngFor="let tag of skill.tags"
+          class="badge bg-light text-dark border"
+        >
+          #{{ tag }}
+          <i
+            class="bi bi-x ms-1"
+            style="cursor: pointer"
+            (click)="removeTag(tag)"
+          ></i>
+        </span>
+      </div>
+    </div>
+
+    <!-- Intent -->
+    <div class="mb-3">
+      <label class="form-label me-3">I want to:</label>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          [(ngModel)]="skill.intent"
+          name="intent"
+          value="teach"
+        />
+        <label class="form-check-label">Teach</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          [(ngModel)]="skill.intent"
+          name="intent"
+          value="learn"
+        />
+        <label class="form-check-label">Learn</label>
+      </div>
+    </div>
+
+    <!-- Skill Level -->
+    <div class="mb-3">
+      <label class="form-label me-3">Skill Level</label>
+      <div
+        class="form-check form-check-inline"
+        *ngFor="let level of ['Beginner', 'Intermediate', 'Advanced']; let i = index"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          name="skillLevel"
+          [(ngModel)]="skill.skillLevel"
+          [value]="level"
+        />
+        <label class="form-check-label">{{ level }}</label>
+      </div>
+    </div>
+
+    <!-- Prerequisites -->
+    <div class="mb-3">
+      <label class="form-label">Prerequisites</label>
+      <input
+        class="form-control"
+        [(ngModel)]="skill.prerequisites"
+        name="prerequisites"
+      />
+    </div>
+
+    <!-- Equipment -->
+    <div class="mb-3">
+      <label class="form-label">Equipment/Software Required</label>
+      <input
+        class="form-control"
+        [(ngModel)]="skill.equipment"
+        name="equipment"
+      />
+    </div>
+
+    <!-- Session Format -->
+    <div class="mb-4">
+      <label class="form-label me-3">Session Format</label>
+      <div
+        class="form-check form-check-inline"
+        *ngFor="let format of ['Online', 'Offline', 'Both']; let i = index"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          name="sessionFormat"
+          [(ngModel)]="skill.sessionFormat"
+          [value]="format"
+        />
+        <label class="form-check-label">{{ format }}</label>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex gap-2">
+      <button class="btn btn-dark" type="submit">Publish Skill</button>
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="goToProfile()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

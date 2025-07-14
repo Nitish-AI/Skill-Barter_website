@@ -1,0 +1,11 @@
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+input,
+textarea,
+select {
+    border-radius: 6px !important;
+}

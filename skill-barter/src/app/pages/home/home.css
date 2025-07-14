@@ -1,0 +1,46 @@
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+
+.hero-section p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+.btn {
+    font-weight: 500;
+}
+
+.hero-section h1,
+.how-it-works h2,
+.skill-categories h2,
+.testimonials h2,
+.final-cta h2 {
+    font-size: 2rem;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.testimonials blockquote {
+    font-style: italic;
+}
+
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+
+    .hero-section .row {
+        flex-direction: column-reverse;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+}

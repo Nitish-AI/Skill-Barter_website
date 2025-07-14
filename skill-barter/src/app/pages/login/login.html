@@ -1,0 +1,89 @@
+<div class="login-container">
+  <h2>Welcome Back</h2>
+  <p class="subtitle">Sign in to your account</p>
+
+  <form (ngSubmit)="login()" class="login-form">
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Username or Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        placeholder="Enter username or email"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-group">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          class="form-control"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+        <span
+          class="input-group-text"
+          (click)="togglePasswordVisibility()"
+          style="cursor: pointer"
+        >
+          <i
+            class="bi"
+            [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+          ></i>
+        </span>
+      </div>
+    </div>
+
+    <!-- Options -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          id="remember"
+          [(ngModel)]="remember"
+          name="remember"
+          class="form-check-input"
+        />
+        <label for="remember" class="form-check-label">Remember me</label>
+      </div>
+      <a href="#" class="small text-dark fw-medium">Forgot password?</a>
+    </div>
+
+    <!-- Sign In Button -->
+    <button type="submit" class="btn btn-dark w-100 rounded-3 mb-3">
+      Login In
+    </button>
+
+    <!-- Divider -->
+    <div class="divider my-2 text-center">
+      <span>Or continue with</span>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="d-flex justify-content-between gap-3">
+      <button type="button" class="btn btn-light border w-100">
+        <i class="bi bi-google me-2"></i>Google
+      </button>
+      <button type="button" class="btn btn-light border w-100">
+        <i class="bi bi-facebook me-2"></i>Facebook
+      </button>
+    </div>
+
+    <!-- Sign up -->
+    <p class="text-center mt-4 small">
+      Don’t have an account?
+      <a routerLink="/signup" class="text-decoration-none text-dark fw-medium"
+        >Sign up</a
+      >
+    </p>
+  </form>
+</div>
